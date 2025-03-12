@@ -1,0 +1,247 @@
+.city-seo-meta-box {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-top: 20px;
+}
+
+.city-seo-meta-box label {
+    font-weight: 600;
+    color: #23282d;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.city-seo-meta-box input[type="text"],
+.city-seo-meta-box textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 8px;
+    box-sizing: border-box;
+}
+
+.city-seo-meta-box input[type="text"]:focus,
+.city-seo-meta-box textarea:focus {
+    border-color: #0073aa;
+    box-shadow: 0 0 0 1px #0073aa;
+    outline: none;
+}
+
+.city-seo-meta-box textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.city-seo-meta-box .char-count {
+    font-size: 12px;
+    color: #666;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.city-seo-meta-box .warning {
+    font-size: 12px;
+    color: #dc3545;
+    margin-top: 5px;
+    display: none;
+}
+
+
+.city-page-seo .wrap {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.city-page-seo .wrap h1 {
+    font-size: 24px;
+    color: #23282d;
+    margin-bottom: 20px;
+}
+
+.city-page-seo .wrap h2 {
+    font-size: 20px;
+    color: #23282d;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.city-page-seo .wrap label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #23282d;
+}
+
+.city-page-seo .wrap input[type="text"],
+.city-page-seo .wrap textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+.city-page-seo .wrap input[type="text"]:focus,
+.city-page-seo .wrap textarea:focus {
+    border-color: #0073aa;
+    box-shadow: 0 0 0 1px #0073aa;
+    outline: none;
+}
+
+.city-page-seo .wrap textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+.city-page-seo .button-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 4px 20px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.city-page-seo .button-primary:hover {
+    background-color: #005177;
+}
+
+.city-page-seo .custom-button-danger {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 11px 30px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.city-page-seo .custom-button-danger:hover {
+    background-color: #a71d2a;
+}
+
+.city-page-seo .button {
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+    padding: 4px 20px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.city-page-seo .button:hover {
+    background-color: #5a6268;
+}
+
+.city-page-seo .wp-list-table.widefat.fixed.striped {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.city-page-seo .wp-list-table.widefat.fixed.striped th,
+.city-page-seo .wp-list-table.widefat.fixed.striped td {
+    padding: 12px;
+    border: 1px solid #e5e5e5;
+}
+
+.city-page-seo .wp-list-table.widefat.fixed.striped th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #23282d;
+}
+
+.city-page-seo .wp-list-table.widefat.fixed.striped tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.city-page-seo .wp-list-table.widefat.fixed.striped tr:hover {
+    background-color: #f1f1f1;
+}
+
+.city-page-seo .wp-list-table.widefat.fixed.striped .row-actions {
+    color: #ddd;
+    font-size: 12px;
+}
+
+.city-page-seo .wp-list-table.widefat.fixed.striped .row-actions a {
+    color: #0073aa;
+    text-decoration: none;
+}
+
+.city-page-seo .wp-list-table.widefat.fixed.striped .row-actions a:hover {
+    color: #00a0d2;
+}
+
+.city-page-seo .updated,
+.city-page-seo .error {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.city-page-seo .updated {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.city-page-seo .error {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
+
+
+input[name="search_city"] {
+    width: 300px;
+    padding: 5px;
+}
+
+.tablenav-pages {
+	margin-top: 20px;
+}
+
+.tablenav-pages .current {
+    padding: 8px;
+    background: #007bff;
+    color: white;
+    border-radius: 6px;
+    display: inline-block;
+	font-size: 14px;
+}
+
+.tablenav-pages a {
+	padding: 8px;
+    color: black;
+    text-decoration: none;
+    margin-left: 10px;
+	font-size: 14px;
+}
+
+.tablenav-pages a:hover {
+    padding: 8px;
+    background: #007bff;
+    color: white;
+    border-radius: 6px;
+    display: inline-block;
+}
