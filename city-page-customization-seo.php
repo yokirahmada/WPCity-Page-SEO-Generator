@@ -7,10 +7,9 @@
  */
 
 if (!defined('ABSPATH')) {
-    exit; // Exit if accessed directly
+    exit; 
 }
 
-// Load all necessary files
 require_once plugin_dir_path(__FILE__) . 'includes/functions/activation.php';
 require_once plugin_dir_path(__FILE__) . 'includes/admin/admin-page.php';
 require_once plugin_dir_path(__FILE__) . 'includes/admin/meta-box.php';
@@ -20,12 +19,10 @@ register_activation_hook(__FILE__, 'city_page_seo_activate');
 
 
 function city_page_seo_enqueue_styles($hook) {
-    // Cek apakah halaman saat ini adalah halaman plugin Anda
+
     if ($hook != 'toplevel_page_city_page_seo') {
         return;
     }
-
-    // Load CSS hanya di halaman plugin
     wp_enqueue_style(
         'city-page-seo-style',
         plugin_dir_url(__FILE__) . 'assets/css/style.css',
@@ -37,7 +34,6 @@ add_action('admin_enqueue_scripts', 'city_page_seo_enqueue_styles');
 
 
 function city_page_seo_enqueue_scripts($hook) {
-    // Load script hanya di halaman edit post atau halaman plugin Anda
     if (in_array($hook, ['post.php', 'post-new.php', 'toplevel_page_city_page_seo'])) {
         wp_enqueue_script(
             'city-page-seo-script',

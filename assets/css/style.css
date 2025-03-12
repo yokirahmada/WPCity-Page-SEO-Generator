@@ -1,3 +1,4 @@
+/* Styling for meta box */
 .city-seo-meta-box {
     background: #f9f9f9;
     padding: 20px;
@@ -149,6 +150,7 @@
 
 .city-page-seo .button:hover {
     background-color: #5a6268;
+    color: white;
 }
 
 .city-page-seo .wp-list-table.widefat.fixed.striped {

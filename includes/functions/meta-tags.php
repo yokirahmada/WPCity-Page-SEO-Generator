@@ -1,5 +1,5 @@
 <?php
-// Tambahkan Meta Tags ke <head> (Paling Atas)
+// Add Meta Tags to <head>
 function city_page_seo_add_meta_tags() {
     if (is_singular()) {
         global $post;

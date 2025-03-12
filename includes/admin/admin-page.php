@@ -10,27 +10,27 @@ function city_page_seo_admin_page() {
     global $wpdb;
     $table_name = $wpdb->prefix . 'city_page_seo';
 
-    // Buka container utama dengan class "city-page-seo"
+    // Open main container with class "city-page-seo"
     echo '<div class="wrap city-page-seo">';
 
     // Handle Add City
     if (isset($_POST['city_page_seo_save']) && check_admin_referer('city_page_seo_save_action', 'city_page_seo_nonce')) {
         $cities = explode(",", sanitize_text_field($_POST['city_page_seo_cities']));
-        $cities = array_filter(array_map('trim', $cities)); // Hilangkan kota kosong
+        $cities = array_filter(array_map('trim', $cities)); // Remove empty cities
 
-        // Ambil template SEO Title dan SEO Description dari input
+        // Get SEO Title and SEO Description templates from input
         $seo_title_template = sanitize_text_field($_POST['seo_title_template']);
         $seo_desc_template = wp_kses_post($_POST['seo_desc_template']);
 
         if (empty($cities)) {
             echo '<div class="error"><p>Please input city name!</p></div>';
         } else {
-            // Ambil template untuk konten halaman
+            // Get page content template
             $page_content_template = wp_kses_post($_POST['page_content_template']);
         
             foreach ($cities as $city) {
                 if (!empty($city)) {
-                    // Ganti {city} dengan nama kota
+                    // Replace {city} with the city name
                     $seo_title = str_replace('{city}', $city, $seo_title_template);
                     $seo_desc = str_replace('{city}', $city, $seo_desc_template);
                     $page_content = str_replace('{city}', $city, $page_content_template);
@@ -47,7 +47,7 @@ function city_page_seo_admin_page() {
                     // Automatically create a new page for the city
                     $post_data = array(
                         'post_title'    => "Best Services in $city",
-                        'post_content'  => $page_content, // Konten halaman dinamis
+                        'post_content'  => $page_content, // Dynamic page content
                         'post_status'   => 'publish',
                         'post_type'     => 'page',
                         'meta_input'    => [
@@ -75,10 +75,10 @@ function city_page_seo_admin_page() {
     // Handle Bulk Delete
     if (isset($_POST['city_page_seo_bulk_delete']) && check_admin_referer('city_page_seo_bulk_delete_action', 'city_page_seo_bulk_delete_nonce')) {
         if (!empty($_POST['city_ids'])) {
-            $city_ids = array_map('intval', $_POST['city_ids']); // Pastikan ID berupa integer
-            $placeholders = implode(',', array_fill(0, count($city_ids), '%d')); // Buat placeholders untuk query
+            $city_ids = array_map('intval', $_POST['city_ids']); // Ensure IDs are integers
+            $placeholders = implode(',', array_fill(0, count($city_ids), '%d')); // Create placeholders for the query
 
-            // Hapus data terpilih dari database
+            // Delete selected data from the database
             $wpdb->query($wpdb->prepare("DELETE FROM $table_name WHERE id IN ($placeholders)", $city_ids));
 
             echo '<div class="updated"><p>Selected cities deleted successfully!</p></div>';
@@ -94,7 +94,7 @@ function city_page_seo_admin_page() {
         $seo_title = sanitize_text_field($_POST['seo_title']);
         $seo_desc = wp_kses_post($_POST['seo_desc']);
 
-        // Validasi input saat edit
+        // Validate input during edit
         if (empty($city_name) || empty($seo_title) || empty($seo_desc)) {
             echo '<div class="error"><p>All fields are required!</p></div>';
         } else {
@@ -111,13 +111,13 @@ function city_page_seo_admin_page() {
         }
     }
 
-    // Fetch All Cities dengan Pencarian dan Paginasi
+    // Fetch All Cities with Search and Pagination
     $search_city = isset($_GET['search_city']) ? sanitize_text_field($_GET['search_city']) : '';
-    $per_page = 25; // Jumlah item per halaman
-    $current_page = isset($_GET['paged']) ? max(1, intval($_GET['paged'])) : 1; // Halaman saat ini
-    $offset = ($current_page - 1) * $per_page; // Hitung offset
+    $per_page = 25; // Number of items per page
+    $current_page = isset($_GET['paged']) ? max(1, intval($_GET['paged'])) : 1; // Current page
+    $offset = ($current_page - 1) * $per_page; // Calculate offset
 
-    // Query untuk mengambil data kota
+    // Query to fetch city data
     $query = "SELECT * FROM $table_name";
     if (!empty($search_city)) {
         $query .= $wpdb->prepare(" WHERE city_name LIKE %s", '%' . $wpdb->esc_like($search_city) . '%');
@@ -125,9 +125,9 @@ function city_page_seo_admin_page() {
     $query .= $wpdb->prepare(" LIMIT %d OFFSET %d", $per_page, $offset);
     $cities = $wpdb->get_results($query);
 
-    // Hitung total jumlah kota
+    // Calculate total number of cities
     $total_cities = $wpdb->get_var("SELECT COUNT(*) FROM $table_name" . (!empty($search_city) ? $wpdb->prepare(" WHERE city_name LIKE %s", '%' . $wpdb->esc_like($search_city) . '%') : ''));
-    $total_pages = ceil($total_cities / $per_page); // Hitung total halaman
+    $total_pages = ceil($total_cities / $per_page); // Calculate total pages
 
     // Display Edit Form if Editing
     if (isset($_GET['action']) && $_GET['action'] == 'edit' && isset($_GET['id'])) {
@@ -156,7 +156,7 @@ function city_page_seo_admin_page() {
         }
     }
 
-    // Tampilkan halaman utama
+    // Display main page
     echo '<h1>City Page Customization SEO</h1>
     <form method="post">
     ' . wp_nonce_field('city_page_seo_save_action', 'city_page_seo_nonce', true, false) . '
@@ -165,21 +165,21 @@ function city_page_seo_admin_page() {
     <br><br>
     <label>SEO Title Template:</label>
     <input type="text" name="seo_title_template" value="Top Services in {city}" style="width:100%;" required />
-    <small>Gunakan <code>{city}</code> untuk menampilkan nama kota.</small>
+    <small>Use <code>{city}</code> to display the city name.</small>
     <br><br>
     <label>SEO Description Template:</label>
     <textarea name="seo_desc_template" style="width:100%; height: 100px;" required>Find the best services available in {city} today!</textarea>
-    <small>Gunakan <code>{city}</code> untuk menampilkan nama kota.</small>
+    <small>Use <code>{city}</code> to display the city name.</small>
     <br><br>
     <label>Page Content Template:</label>
     <textarea name="page_content_template" style="width:100%; height: 200px;" required>Welcome to our services in {city}! We offer the best services in {city} to meet your needs.</textarea>
-    <small>Gunakan <code>{city}</code> untuk menampilkan nama kota.</small>
+    <small>Use <code>{city}</code> to display the city name.</small>
     <br><br>
     <input type="submit" name="city_page_seo_save" value="Add Cities" class="button-primary" />
     </form>
     <br><br><br>';
 
-    // Form Pencarian
+    // Search Form
     echo '<form method="get" action="">
           <input type="hidden" name="page" value="city_page_seo" />
           <label>Search City:</label>
@@ -189,7 +189,7 @@ function city_page_seo_admin_page() {
           </form>
           <br>';
 
-    // Tampilkan tabel daftar kota dengan checkbox
+    // Display city list table with checkboxes
     echo '<h2>List of Cities</h2>
           <form method="post" action="">
           ' . wp_nonce_field('city_page_seo_bulk_delete_action', 'city_page_seo_bulk_delete_nonce', true, false) . '
@@ -231,7 +231,7 @@ function city_page_seo_admin_page() {
     echo '</tbody></table>
           </form>';
 
-    // Tampilkan paginasi
+    // Display pagination
     echo '<div class="tablenav-pages">';
     echo paginate_links(array(
         'base' => add_query_arg('paged', '%#%'),
@@ -243,5 +243,5 @@ function city_page_seo_admin_page() {
     ));
     echo '</div>';
 
-    echo '</div>'; // Tutup container utama
+    echo '</div>'; // Close main container
 }
